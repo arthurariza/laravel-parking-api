@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Zone;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+
+        Zone::create(['name' => 'Green Zone', 'price_per_hour' => 100]);
+        Zone::create(['name' => 'Yellow Zone', 'price_per_hour' => 200]);
+        Zone::create(['name' => 'Red Zone', 'price_per_hour' => 300]);
     }
 }
