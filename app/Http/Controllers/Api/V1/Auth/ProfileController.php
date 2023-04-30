@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Auth
+ */
 class ProfileController extends Controller
 {
     public function show(Request $request): JsonResponse
