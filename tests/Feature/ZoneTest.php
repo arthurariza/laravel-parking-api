@@ -15,7 +15,7 @@ class ZoneTest extends TestCase
         Zone::create(['name' => 'Green Zone', 'price_per_hour' => 100]);
         Zone::create(['name' => 'Yellow Zone', 'price_per_hour' => 200]);
         Zone::create(['name' => 'Red Zone', 'price_per_hour' => 300]);
-        
+
         $response = $this->getJson('/api/v1/zones');
 
         $response->assertStatus(200)
