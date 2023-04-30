@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ParkingResource;
 use App\Models\Parking;
+use App\Services\ParkingPriceService;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -40,8 +41,14 @@ class ParkingController extends Controller
 
     public function update(Parking $parking)
     {
+        if($parking->stop_time) {
+            return response()->json(
+                ['errors' => ['general' => ['Parking already stopped.']]],Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         $parking->update([
             'stop_time' => now(),
+            'total_price' => ParkingPriceService::calculatePrice($parking->zone_id, $parking->start_time)
         ]);
 
         return ParkingResource::make($parking);
