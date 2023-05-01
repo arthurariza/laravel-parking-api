@@ -22,6 +22,10 @@ class Vehicle extends Model
             }
         });
 
-        static::addGlobalScope('user', fn (Builder $builder) => $builder->where('user_id', auth()->id()));
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->when(auth()->id(), function (Builder $builder) {
+                return $builder->where('user_id', auth()->id());
+            });
+        });
     }
 }
